@@ -61,17 +61,17 @@ jobs:
           sleep 15
           pip install requests
           python - <<EOF
-import requests
-try:
-    resp = requests.get('requests.get('http://localhost:8000/health')
-    if resp.status_code != 200:
-        print('Smoke test falhou: status', resp.status_code)
-        exit(1)
-    print('✅ Smoke test passou!')
-except Exception as e:
-    print('Smoke test falhou com erro:', e)
-    exit(1)
-EOF
+          import requests
+          try:
+              resp = requests.get('requests.get('http://localhost:8000/health')
+              if resp.status_code != 200:
+                  print('Smoke test falhou: status', resp.status_code)
+                  exit(1)
+              print('✅ Smoke test passou!')
+          except Exception as e:
+              print('Smoke test falhou com erro:', e)
+              exit(1)
+          EOF
 
-      - name: Stop container
-        run: docker stop $CONTAINER_ID || true
+                - name: Stop container
+                  run: docker stop $CONTAINER_ID || true
