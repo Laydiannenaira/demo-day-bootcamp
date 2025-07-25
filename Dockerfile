@@ -17,6 +17,6 @@ WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
 COPY --from=builder /app ./app
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["/app/.venv/bin/uvicorn", "app.main:app", "--port", "8000", "--host", "0.0.0.0"]
+CMD ["/app/.venv/bin/uvicorn", "app.main:app", "--port", "8080", "--host", "0.0.0.0"]
