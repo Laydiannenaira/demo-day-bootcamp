@@ -1,0 +1,36 @@
+name: CI Pipeline  # Nome do workflow (sem CD)
+
+on:  # Disparadores:
+  push:
+    branches: ["main"]  # Roda ao fazer push na main
+  pull_request:
+    branches: ["main"]  # Roda em PRs para a main
+
+jobs:
+  test-and-lint:  # Único job (testes + qualidade)
+    runs-on: ubuntu-latest  # Executa em Ubuntu
+
+    steps:
+      # Passo 1: Baixar o código
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Passo 2: Configurar Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # Passo 3: Instalar dependências com uv
+      - name: Install dependencies
+        run: |
+          pip install uv
+          uv pip install -r requirements.txt
+
+      # Passo 4: Rodar testes
+      - name: Run tests
+        run: uv run pytest
+
+      # Passo 5: Verificar estilo/linter
+      - name: Run linter (ruff)
+        run: uv run ruff check .
