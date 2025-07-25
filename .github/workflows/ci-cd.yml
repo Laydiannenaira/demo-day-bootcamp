@@ -73,5 +73,6 @@ jobs:
               exit(1)
           EOF
 
-                - name: Stop container
-                  run: docker stop $CONTAINER_ID || true
+              - name: Stop container
+                run: docker stop $CONTAINER_ID || true
+
