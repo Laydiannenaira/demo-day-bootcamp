@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: uv sync --no-cache
 
-      - name: Lint com ruff
+      - name: Lint with ruff
         run: uv run ruff check .
 
       - name: Run tests
