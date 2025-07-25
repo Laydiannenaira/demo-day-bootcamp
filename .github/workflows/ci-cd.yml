@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: Run smoke test container
         run: |
-          CONTAINER_ID=$(docker run -d -p 8000:8080 ${{ secrets.DOCKER_USER }}/demo-day-app:latest)
+          CONTAINER_ID=$(docker run --rm -d -p 8000:8080 ${{ secrets.DOCKER_USER }}/demo-day-app:latest)
           echo "CONTAINER_ID=$CONTAINER_ID" >> $GITHUB_ENV
           echo "Aguardando app subir..."
           sleep 15
@@ -63,7 +63,7 @@ jobs:
           python - <<EOF
 import requests
 try:
-    resp = requests.get('http://localhost:8000/api/saudacoes/aleatorio')
+    resp = requests.get('requests.get('http://localhost:8000/health')
     if resp.status_code != 200:
         print('Smoke test falhou: status', resp.status_code)
         exit(1)

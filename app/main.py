@@ -33,3 +33,7 @@ def get_metrics():
 @app.get("/health", status_code=status.HTTP_200_OK)
 def health_check(response: Response):
     return {"status": "healthy", "timestamp": datetime.now(timezone.utc).isoformat()}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
