@@ -61,7 +61,7 @@ jobs:
 
       - name: Run smoke test
         run: |
-          CONTAINER_ID=$(docker run --rm -d -p 8000:80 ${{ secrets.DOCKER_USER }}/demo-day-app:latest)
+          CONTAINER_ID=$(docker run --rm -d -p 8000:8080 ${{ secrets.DOCKER_USER }}/demo-day-app:latest)
           echo "CONTAINER_ID=$CONTAINER_ID" >> $GITHUB_ENV
           sleep 5
           pip install requests
