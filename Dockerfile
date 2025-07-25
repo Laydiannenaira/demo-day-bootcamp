@@ -8,10 +8,7 @@ RUN python -m venv .venv
 COPY pyproject.toml uv.lock ./
 COPY app/ ./app
 
-RUN pip install --upgrade pip && \
-  pip install uv && \
-  uv venv && \
-  uv pip install -r requirements.txt
+RUN . .venv/bin/activate && pip install --upgrade pip && pip install .
 
 # Stage 2: Runtime
 FROM python:3.12-slim
